@@ -1,0 +1,18 @@
+version: '3'
+services:
+  okane-db:
+    image: postgres:14.1
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "okane"
+      POSTGRES_PASSWORD: "okane"
+      TZ: "Asia/Tokyo"
+    volumes:
+      - ./postgres/init:/docker-entrypoint-initdb.d
+      - okane-rdb-volume:/var/lib/postgresql/data  # 수정: MySQL 데이터 디렉토리가 아닌 PostgreSQL 데이터 디렉토리로 변경
+volumes:
+  okane-rdb-volume:
+networks:
+  default:
+    driver: bridge
