@@ -10,7 +10,7 @@ services:
       TZ: "Asia/Tokyo"
     volumes:
       - ./postgres/init:/docker-entrypoint-initdb.d
-      - okane-rdb-volume:/var/lib/postgresql/data  # 수정: MySQL 데이터 디렉토리가 아닌 PostgreSQL 데이터 디렉토리로 변경
+      - okane-rdb-volume:/var/lib/postgresql/data
 volumes:
   okane-rdb-volume:
 networks:
