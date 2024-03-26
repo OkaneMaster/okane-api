@@ -1,16 +1,18 @@
 version: '3'
 services:
   okane-db:
-    image: postgres:14.1
+    image: mariadb:10.11
     ports:
-      - "5432:5432"
+      - "3306:3306"
     environment:
-      POSTGRES_USER: "okane"
-      POSTGRES_PASSWORD: "okane"
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: "yes"
+      MARIADB_DATABASE: okane
+      MARIADB_USER: okane
+      MARIADB_PASSWORD: okane
       TZ: "Asia/Tokyo"
     volumes:
-      - ./postgres/init:/docker-entrypoint-initdb.d
-      - okane-rdb-volume:/var/lib/postgresql/data
+      - ./mariadb/init:/docker-entrypoint-initdb.d
+      - okane-rdb-volume:/var/lib/mysql
 volumes:
   okane-rdb-volume:
 networks:
